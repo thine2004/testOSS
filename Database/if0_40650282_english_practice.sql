@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: sql306.byetcluster.com
--- Generation Time: Dec 11, 2025 at 06:21 PM
+-- Generation Time: Dec 15, 2025 at 02:06 PM
 -- Server version: 11.4.7-MariaDB
 -- PHP Version: 7.2.22
 
@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `categories`
 --
 
+DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
@@ -50,6 +51,7 @@ INSERT INTO `categories` (`id`, `name`, `description`, `icon`) VALUES
 -- Table structure for table `contacts`
 --
 
+DROP TABLE IF EXISTS `contacts`;
 CREATE TABLE `contacts` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
@@ -62,12 +64,20 @@ CREATE TABLE `contacts` (
   `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `contacts`
+--
+
+INSERT INTO `contacts` (`id`, `user_id`, `name`, `email`, `subject`, `message`, `reply`, `status`, `created_at`) VALUES
+(3, 10, 'thi dang', 'dangtruongthip24@gmail.com', 'Tư vấn khóa học', 'tôi cần giúp đổi tên tài khoản', NULL, 'new', '2025-12-13 00:13:37');
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `exams`
 --
 
+DROP TABLE IF EXISTS `exams`;
 CREATE TABLE `exams` (
   `id` int(11) NOT NULL,
   `category_id` int(11) DEFAULT NULL,
@@ -85,7 +95,7 @@ CREATE TABLE `exams` (
 --
 
 INSERT INTO `exams` (`id`, `category_id`, `title`, `description`, `duration_minutes`, `total_questions`, `image`, `created_at`, `type`) VALUES
-(1, 1, 'IELTS Reading - Academic Test 1', 'Full academic reading simulation.', 60, 2, '', '2025-12-10 21:10:50', 'mixed'),
+(1, 1, 'IELTS Reading - Academic Test 1', 'Full academic reading simulation.', 60, 3, '', '2025-12-10 21:10:50', 'mixed'),
 (2, 1, 'â', '', 60, 1, '', '2025-12-10 22:47:57', 'image'),
 (3, 1, 'thi dang', '', 5, 1, '', '2025-12-10 22:49:50', 'audio');
 
@@ -95,6 +105,7 @@ INSERT INTO `exams` (`id`, `category_id`, `title`, `description`, `duration_minu
 -- Table structure for table `lab_files`
 --
 
+DROP TABLE IF EXISTS `lab_files`;
 CREATE TABLE `lab_files` (
   `id` int(11) NOT NULL,
   `lab_session` int(11) NOT NULL,
@@ -292,6 +303,7 @@ INSERT INTO `lab_files` (`id`, `lab_session`, `title`, `display_path`, `file_pat
 -- Table structure for table `news`
 --
 
+DROP TABLE IF EXISTS `news`;
 CREATE TABLE `news` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
@@ -314,6 +326,7 @@ INSERT INTO `news` (`id`, `title`, `summary`, `content`, `image`, `created_at`) 
 -- Table structure for table `questions`
 --
 
+DROP TABLE IF EXISTS `questions`;
 CREATE TABLE `questions` (
   `id` int(11) NOT NULL,
   `exam_id` int(11) NOT NULL,
@@ -334,9 +347,10 @@ CREATE TABLE `questions` (
 
 INSERT INTO `questions` (`id`, `exam_id`, `content`, `option_a`, `option_b`, `option_c`, `option_d`, `correct_option`, `explanation`, `media_type`, `media_url`) VALUES
 (1, 1, 'The main purpose of the passage is to...', 'Describe a new theory', 'Criticize a methodology', 'Explain a historical event', 'Compare two approaches', 'A', 'The passage focuses on introducing Theory X.', 'none', NULL),
-(2, 1, 'What is this animal?', 'pig', 'cow', 'horse', 'monkey', 'A', 'it\'s a pig', 'image', '1765403845_chu-heo-con-dep_111011597.jpeg'),
+(2, 1, 'What is this animal?', 'pig', 'cow', 'horse', 'monkey', 'A', 'it\'s a pig', 'image', '1765571735_Screenshot2025-08-31160733.png'),
 (3, 2, 'what inside the picture', 'girl', 'boy', 'steam', 'chat', 'C', 'it\'s a steam page', 'image', '1765406973_Screenshot 2025-10-12 000948.png'),
-(11, 3, 'what is this sound belongs to?', 'horse', 'dog', 'cat', 'mouse', 'D', 'it\'s sound of mouse', 'audio', '1765487587_tieng_chuot_keu-www_tiengdong_com.mp3');
+(11, 3, 'what is this sound belongs to?', 'horse', 'dog', 'cat', 'mouse', 'D', 'it\'s sound of mouse', 'audio', '1765487587_tieng_chuot_keu-www_tiengdong_com.mp3'),
+(12, 1, 'animal', 'pig2', 'cow4', 'horse3', 'monkey5', 'C', 'it\'s a horse3', 'image', '1765616387_Screenshot2025-09-25181735.png');
 
 -- --------------------------------------------------------
 
@@ -344,6 +358,7 @@ INSERT INTO `questions` (`id`, `exam_id`, `content`, `option_a`, `option_b`, `op
 -- Table structure for table `results`
 --
 
+DROP TABLE IF EXISTS `results`;
 CREATE TABLE `results` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -359,9 +374,7 @@ CREATE TABLE `results` (
 --
 
 INSERT INTO `results` (`id`, `user_id`, `exam_id`, `score`, `total_correct`, `time_taken_seconds`, `completed_at`) VALUES
-(13, 6, 1, 20, 2, NULL, '2025-12-11 21:25:47'),
-(14, 3, 3, 10, 1, NULL, '2025-12-11 21:39:20'),
-(15, 3, 3, 0, 0, NULL, '2025-12-11 22:51:10');
+(24, 10, 1, 20, 2, NULL, '2025-12-13 08:56:21');
 
 -- --------------------------------------------------------
 
@@ -369,11 +382,24 @@ INSERT INTO `results` (`id`, `user_id`, `exam_id`, `score`, `total_correct`, `ti
 -- Table structure for table `reviews`
 --
 
+DROP TABLE IF EXISTS `reviews`;
 CREATE TABLE `reviews` (
   `id` int(11) NOT NULL,
   `user_name` varchar(100) NOT NULL,
-  `rating` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `rating` int(11) NOT NULL,
+  `comment` text DEFAULT NULL,
+  `is_visible` tinyint(1) DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `reviews`
+--
+
+INSERT INTO `reviews` (`id`, `user_name`, `rating`, `comment`, `is_visible`, `created_at`) VALUES
+(6, 'thi dang', 5, 'web rất hay', 1, '2025-12-12 23:57:38'),
+(7, 'dang', 5, 'web tuyệt lắm', 1, '2025-12-13 00:04:38'),
+(8, 'thi', 5, 'web dạy rất hay', 1, '2025-12-13 00:12:54');
 
 -- --------------------------------------------------------
 
@@ -381,6 +407,7 @@ CREATE TABLE `reviews` (
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
@@ -480,7 +507,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `exams`
@@ -504,19 +531,19 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `results`
 --
 ALTER TABLE `results`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`

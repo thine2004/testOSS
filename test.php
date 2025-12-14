@@ -78,7 +78,7 @@ if (!$exam) {
 }
 
 // Fetch Questions
-$qStmt = $pdo->prepare("SELECT * FROM questions WHERE exam_id = ? ORDER BY id ASC"); 
+$qStmt = $pdo->prepare("SELECT * FROM questions WHERE exam_id = ? ORDER BY id ASC"); // Randomize? ORDER BY RAND() is better usually but let's stick to simple
 $qStmt->execute([$examId]);
 $questions = $qStmt->fetchAll();
 
@@ -103,7 +103,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_test'])) {
         }
     }
 
-
+    // Scoring Logic (e.g., 10 points per question or 100 scale)
+    // Let's do 10 points per question for simplicity, or 100 max.
+    // If we follow history.php showing 'score', let's say 10 pts per correct.
     $score = $correctCount * 10;
 
     // Save Result
