@@ -1,9 +1,9 @@
 <?php
 // Config for Database
 define('DB_HOST', 'sql213.infinityfree.com');
-define('DB_USER', 'if0_40682038');
-define('DB_PASS', 'Ko5uTLCxvoc');
-define('DB_NAME', 'if0_40682038_english_practice');
+define('DB_USER', 'if0_40682007');
+define('DB_PASS', 'ouPwJxalGXJLnFD');
+define('DB_NAME', 'if0_40682007_test_oss');
 
 try {
     $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
