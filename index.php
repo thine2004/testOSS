@@ -15,7 +15,7 @@ require_once 'config.php';
 </head>
 
 <body style="display: block; background: white;">
-
+<h1><u>Đặng Trường Thi-Cuối kỳ</u></h1>
     <!-- NAVIGATION -->
     <?php require_once 'includes/navbar_public.php';
     renderNav(isLoggedIn()); ?>
